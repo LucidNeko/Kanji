@@ -13,4 +13,4 @@ psql: ## Start a local psql instance connected to the database
 	PGPASSWORD=jmdictdb psql -U jmdictdb -d jmdict -h $(shell docker-compose port db 5432 | sed 's/0.0.0.0/127.0.0.1/' | sed 's/:/ -p /')
 
 populate: ## Load JMDict into the database
-	docker-compose run populate make DB=jmdict HOST=db loadall
+	docker-compose run --rm populate make DB=jmdict HOST=db loadall
