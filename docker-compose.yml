@@ -1,0 +1,28 @@
+version: "2"
+
+volumes:
+    dev_root: {}
+    db_data: {}
+
+services:
+    dev:
+        build: server
+        command: "true"
+        volumes:
+            - dev_root:/root
+            - /.server:/kanji
+
+    db:
+        build: db
+        ports:
+            - "5432"
+        volumes:
+            - db_data:/var/lib/postgresql/data
+
+    populate:
+        build: populate
+        command: "true"
+        volumes:
+            - ./env/pgpass:/root/.pgpass
+        working_dir: /JMDictDB
+
