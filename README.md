@@ -4,6 +4,6 @@ This project provides a convenient API into the Japanese-Multilingual Dictionary
 
 # Getting Started
 
-docker-compose up -d
-make create-db
-make activate-db
+ - docker-compose up -d
+ - make create-db
+ - make activate-db
