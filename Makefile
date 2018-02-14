@@ -12,5 +12,8 @@ shell: ## Run a shell in the environment
 psql: ## Start a local psql instance connected to the database
 	PGPASSWORD=jmdictdb psql -U jmdictdb -d jmdict -h $(shell docker-compose port db 5432 | sed 's/:/ -p /')
 
-populate: ## Load JMDict into the database
-	docker-compose run --rm populate make DB=jmdict HOST=db loadall
+create-db: ## Load JMDict into the database
+	docker-compose run --rm jmdictdb make HOST=db loadall
+
+activate-db: ## Activate the JMDict database
+	docker-compose run --rm jmdictdb make HOST=db activate
