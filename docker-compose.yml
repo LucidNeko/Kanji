@@ -10,7 +10,16 @@ services:
         command: "true"
         volumes:
             - dev_root:/root
-            - /.server:/kanji
+            - ./server:/kanji
+
+    server:
+        build: server
+        command: "kanji debug"
+        ports:
+            - 80
+        volumes:
+            - dev_root:/root
+            - ./server:/kanji:ro
 
     db:
         build: db

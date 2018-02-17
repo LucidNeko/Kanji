@@ -1,4 +1,4 @@
-.PHONY: help shell psql populate
+.PHONY: help shell psql populate url
 
 help:
 	@echo Docker control commands:
@@ -17,3 +17,6 @@ create-db: ## Load JMDict into the database
 
 activate-db: ## Activate the JMDict database
 	docker-compose run --rm jmdictdb make HOST=db activate
+
+url:
+	docker-compose port server 80 | sed 's/0.0.0.0/127.0.0.1/'
